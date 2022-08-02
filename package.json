@@ -1,0 +1,32 @@
+{
+  "name": "rowbot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./src/index.js",
+  "scripts": {
+    "dev": "pm2 start . --name rowbot --watch",
+    "start": "pm2 start .",
+    "start:cluster": "pm2 start . --name rowbot -i max",
+    "stop": "pm2 delete all",
+    "logs": "pm2 logs --raw",
+    "lint": "eslint --ext .ts,.js",
+    "format": "eslint --ext .ts,.js --fix"
+  },
+  "engines": {
+    "node": "16.9.x"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^8.20.0",
+    "eslint-config-prettier": "^8.5.0",
+    "prettier": "^2.7.1"
+  },
+  "dependencies": {
+    "@discordjs/rest": "^1.0.1",
+    "discord.js": "^14.1.1",
+    "dotenv": "^16.0.1",
+    "pm2": "^5.2.0"
+  }
+}
