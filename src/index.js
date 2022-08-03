@@ -1,11 +1,17 @@
 const dotenv = require('dotenv');
 const fs = require('fs');
 const path = require('path');
-const {Client, GatewayIntentBits, Collection} = require('discord.js');
+const {Client, GatewayIntentBits, Partials, Collection} = require('discord.js');
 
 dotenv.config();
 const client = new Client({
-  intents: [GatewayIntentBits.Guilds, GatewayIntentBits.DirectMessages],
+  intents: [
+    GatewayIntentBits.Guilds,
+    GatewayIntentBits.DirectMessages,
+    GatewayIntentBits.DirectMessageTyping,
+    GatewayIntentBits.DirectMessageReactions,
+  ],
+  partials: [Partials.Channel, Partials.Message,Partials.Reaction],
 });
 
 client.commands = new Collection();
