@@ -1,10 +1,9 @@
-const dotenv = require('dotenv');
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config();
+}
 const fs = require('node:fs');
 const path = require('node:path');
-const {REST} = require('@discordjs/rest');
-const {Routes} = require('discord.js');
-
-dotenv.config();
+const {Routes, REST} = require('discord.js');
 
 const rest = new REST({version: '10'}).setToken(process.env.DISCORD_TOKEN);
 const commands = [];
@@ -23,4 +22,9 @@ rest
   .put(Routes.applicationCommands(process.env.APPLICATION_ID), {
     body: commands,
   })
-  .catch(console.error);
+  .catch((e) => {
+    console.error(e);
+  })
+  .finally(() => {
+    process.exit(1);
+  });

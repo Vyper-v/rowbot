@@ -1,9 +1,10 @@
-const dotenv = require('dotenv');
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config();
+}
 const fs = require('fs');
 const path = require('path');
 const {Client, GatewayIntentBits, Partials, Collection} = require('discord.js');
 
-dotenv.config();
 const client = new Client({
   intents: [
     GatewayIntentBits.Guilds,
@@ -11,7 +12,7 @@ const client = new Client({
     GatewayIntentBits.DirectMessageTyping,
     GatewayIntentBits.DirectMessageReactions,
   ],
-  partials: [Partials.Channel, Partials.Message,Partials.Reaction],
+  partials: [Partials.Channel, Partials.Message, Partials.Reaction],
 });
 
 client.commands = new Collection();

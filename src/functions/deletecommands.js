@@ -1,9 +1,8 @@
-const dotenv = require('dotenv');
-const {REST} = require('@discordjs/rest');
-const {Routes} = require('discord.js');
-
-dotenv.config();
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config();
+}
+const {Routes, REST} = require('discord.js');
 
 const rest = new REST({version: '10'}).setToken(process.env.DISCORD_TOKEN);
 
-rest.put(Routes.applicationGuildCommands(process.env.APPLICATION_ID,"1002623366173294642"), {body: []});
+rest.put(Routes.applicationCommands(process.env.APPLICATION_ID), {body: []});
